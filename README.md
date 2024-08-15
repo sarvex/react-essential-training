@@ -1,1 +1,1 @@
-# react-essential
+# react-essential-training

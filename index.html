@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="UTF-8"/>
-  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   <title>React ⚛️</title>
 </head>
@@ -13,35 +13,52 @@
 <script type="text/babel">
   function Header(props) {
     return (
-      <header>
-        <h1>{props.name}'s Kitchen</h1>
-      </header>
+        <header>
+          <h1>{props.name}'s Kitchen</h1>
+        </header>
     )
   }
 
   function Main(props) {
     return (
-      <section>
-        <p>We serve the most {props.adjective} food around</p>
-      </section>
+        <section>
+          <img height={400} alt='A server presents two plates at a busy restaurant'
+               src='./restaurant.jpg'/>
+          <ul>
+            {props.dishes.map((dish) => (
+                <li key={dish.id}>{dish.title}</li>
+            ))}
+          </ul>
+        </section>
     )
   }
 
   function Footer(props) {
     return (
-      <footer>
-        <p>Copyright {props.year}</p>
-      </footer>
+        <footer>
+          <p>Copyright {props.year}</p>
+        </footer>
     )
   }
 
+  const dishes = [
+    'Black Bean Soup',
+    'Macroni and Cheese',
+    'Salmon and Potatoes',
+    'Pizza'
+  ]
+  const dishObject = dishes.map((dish, i) => ({
+    id: i,
+    title: dish
+  }))
+
   function App() {
     return (
-        <div>
+        <React.Fragment>
           <Header name='Sarvex'/>
-          <Main adjective='amazing'/>
-          <Footer year={new Date().getFullYear()} />
-        </div>
+          <Main adjective='amazing' dishes={dishObject}/>
+          <Footer year={new Date().getFullYear()}/>
+        </React.Fragment>
     )
   }
 
